@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>CEA-WEB</title>
+	<h:outputStylesheet  library="css" name="login.css" />
+	
+</h:head>
+<h:body>
+	<div class="conteiner" align="center">
+		<p:growl id="grMsg" showDetail="true" sticky="true" life="3000" />
+		<h:form id="frmLogin">
+
+
+			
+			<p:panel id="pnLogin" header="Login CEAWEB"
+				footer="CEAWEB desarrollado by @Johnfe"
+				style="width:400px;height:200px; align:center; margin-bottom:50px;">
+
+				<h:panelGrid columns="2" cellpadding="10" id="pgLogin">
+					<h:outputText value="Login" />
+					<p:inputText id="txtUsuario" required="true" label="Usuario" requiredMessage="Caja vacia"
+						autocomplete="false" value="#{login.usuario}" />
+					<h:outputText value="Contraseña" />
+					<p:password id="txtPassword" required="true" feedback="true" value="#{login.clave}"
+						label="Contraseña" autocomplete="false" requiredMessage="Contraseña vacia"/>
+					<p:commandButton id="btnEnviar" value="Entrar" update="grMsg" actionListener="#{login.login}"
+						icon="ui-icon-check" oncomplete="handleLoginRequest(xhr, status, args)"/>
+				</h:panelGrid>
+			</p:panel>
+
+
+		</h:form>
+	</div>
+
+<script type="text/javascript">
+    function handleLoginRequest(xhr, status, args) {
+       console.log( "[xhr]"+xhr)
+       console.log( "[status]"+status)
+       console.log( "[args.logueo]"+args.logueo)
+       
+       console.log( "[args.pagina]"+args.pagina)
+        if(!args.logueo) {
+           //PF('pnLogin').jq.effect("shake", {times:5}, 100);
+           $(location).attr('href',args.pagina);
+        }
+        else {
+        	$(location).attr('href',args.pagina);
+           //$('#loginLink').fadeOut();
+       }
+    }
+</script>
+
+</h:body>
+</html>
