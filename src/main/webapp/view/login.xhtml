@@ -9,21 +9,23 @@
 	<title>CEA-WEB</title>
 	<h:outputStylesheet  library="css" name="login.css" />
 	
+	
 </h:head>
 <h:body>
 	<div class="conteiner" align="center">
-		<p:growl id="grMsg" showDetail="true" sticky="true" life="3000" />
+		
 		<h:form id="frmLogin">
 
 
-			
+			<p:growl id="grMsg" showDetail="true" sticky="true" life="3000" />
 			<p:panel id="pnLogin" header="Login CEAWEB"
 				footer="CEAWEB desarrollado by @Johnfe"
-				style="width:400px;height:200px; align:center; margin-bottom:50px;">
+				style="width:400px;height:200px; align:center; margin-bottom:15px;"
+				widgetVar="varPanLogin">
 
 				<h:panelGrid columns="2" cellpadding="10" id="pgLogin">
 					<h:outputText value="Login" />
-					<p:inputText id="txtUsuario" required="true" label="Usuario" requiredMessage="Caja vacia"
+					<p:inputText id="txtUsuario" required="true" label="Usuario"  requiredMessage="Caja vacia"
 						autocomplete="false" value="#{login.usuario}" />
 					<h:outputText value="Contraseña" />
 					<p:password id="txtPassword" required="true" feedback="true" value="#{login.clave}"
@@ -45,12 +47,14 @@
        
        console.log( "[args.pagina]"+args.pagina)
         if(!args.logueo) {
-           //PF('pnLogin').jq.effect("shake", {times:5}, 100);
-           $(location).attr('href',args.pagina);
+        	PF('varPanLogin').jq.effect("shake",{times:5},100);
+           
+          
         }
         else {
-        	$(location).attr('href',args.pagina);
-           //$('#loginLink').fadeOut();
+        	
+        	PF('varPanLogin').jq.fadeOut();
+            $(location).attr('href',args.pagina);
        }
     }
 </script>

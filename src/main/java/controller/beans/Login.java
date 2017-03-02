@@ -16,12 +16,12 @@ public class Login {
 	private String usuario;
 
 	public Login() {
-		// TODO Auto-generated constructor stub
+		//TODO
 	}
 	
 	 public void login(ActionEvent event) {
 	        RequestContext context = RequestContext.getCurrentInstance();
-		 
+		    
 	        FacesMessage mensaje = null;
 	        boolean logueo = false;
 	         
@@ -31,6 +31,7 @@ public class Login {
 	        	logueo = true;
 	            mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", usuario);
 	            pagina="/CEAWEB/view/formacion/matricula.xhtml";
+	            
 	        } else {
 	        	logueo = false;
 	            mensaje = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error login", "Credenciales Invalidas");
