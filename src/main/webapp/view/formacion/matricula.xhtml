@@ -19,13 +19,13 @@
 				<ui:fragment>
 					<img id="giFirma" width="300" height="150" />
 				</ui:fragment>
-				<p:commandButton value="firmar" onclick="StartSign()"></p:commandButton>
-				<p:commandButton onclick="ClearFormData()" value="Borrar"></p:commandButton>
+				<p:commandButton value="firmar" onclick="StartSign()"  ></p:commandButton>
+				<p:commandButton onclick="ClearFormData()" value="Borrar" ></p:commandButton>
 				<p:commandButton value="Enviar"
 					actionListener="#{firmarEpad.mostrarFirma()}">
 
 				</p:commandButton>
-				<p:outputLabel id="txtFirma" value="hola"  ></p:outputLabel>
+				<p:outputLabel id="txtFirma" value="#{firmarEpad.imageContentBase64}" ></p:outputLabel>
 			</p:panelGrid>
 
 
@@ -36,13 +36,14 @@
 
 	</h:form>
 	<script type="text/javascript">
-	var imgWidth;
-	var imgHeight;
+	var imgWidth = 300;
+	var imgHeight= 150;
+	var StringImg ='xxxx';
 	function StartSign()
 	 {      
 	   
-		imgWidth = 300;
-		imgHeight = 150;
+		//imgWidth = 300;
+		//imgHeight = 150;
 		var message = { "firstName": "", "lastName": "", "eMail": "", "location": "", "imageFormat": 1, "imageX": imgWidth, "imageY": imgHeight, "imageTransparency": false, "imageScaling": false, "maxUpScalePercent": 0.0, "rawDataFormat": "ENC", "minSigPoints": 25, "penThickness": 3, "penColor": "#000000" };
 
 		document.addEventListener('SigCaptureWeb_SignResponse', SignResponse, false);
@@ -71,10 +72,8 @@
 	{
         var obj = JSON.parse(JSON.stringify(objResponse));
 	    var ctx = document.getElementById('giFirma');
-	    var ctx1 = document.getElementById('txtFirma');
-	   // console.log(ctx1.value);
-	   
-			//&amp; es igual a la Y logica
+	    var ctx1 = document.getElementById('frm:txtFirma');
+
 			if (obj.errorMsg != null &amp;&amp; obj.errorMsg!="" &amp;&amp; obj.errorMsg!="undefined")
 			{
                 alert(obj.errorMsg);
@@ -88,14 +87,11 @@
 					img.onload = function () 
 					{
 						
-						//ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
 					}
-					img.src = "data:image/png;base64," + obj.imageData;
-					//ctx.setAttribute('src', img.src);
-					ctx.src=img.src;
-					//ctx1.innerHTML="hola22";
-					
-					
+					img.src = "data:image/png;base64," + obj.imageData; // me trae la data de la imagen String base64
+					ctx1.innerHTML= img.src; //actualizo el contenido que deseo enviar
+					ctx.src=img.src; // le da valor a la imagen 
+			
                 }
             }
     }
