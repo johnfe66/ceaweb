@@ -19,12 +19,7 @@ public class FirmarEpad   {
 
 
 	public void mostrarFirma(){
-		
-		
-		
-		
-		
-		
+				
 		System.out.println(ImageContentBase64);
 		
 	}
