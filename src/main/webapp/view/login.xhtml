@@ -25,11 +25,12 @@
 
 				<h:panelGrid columns="2" cellpadding="10" id="pgLogin">
 					<h:outputText value="Login" />
-					<p:inputText id="txtUsuario" required="true" label="Usuario"  requiredMessage="Caja vacia"
+					<p:inputText id="txtUsuario" required="true" label="Usuario"  requiredMessage="Usuario Vacio"
 						autocomplete="false" value="#{login.usuario}" />
 					<h:outputText value="Contraseña" />
 					<p:password id="txtPassword" required="true" feedback="true" value="#{login.clave}"
 						label="Contraseña" autocomplete="false" requiredMessage="Contraseña vacia"/>
+						
 					<p:commandButton id="btnEnviar" value="Entrar" update="grMsg" actionListener="#{login.login}"
 						icon="ui-icon-check" oncomplete="handleLoginRequest(xhr, status, args)"/>
 				</h:panelGrid>
@@ -54,7 +55,7 @@
         else {
         	
         	PF('varPanLogin').jq.fadeOut();
-            $(location).attr('href',args.pagina);
+           $(location).attr('href',args.pagina);
        }
     }
 </script>

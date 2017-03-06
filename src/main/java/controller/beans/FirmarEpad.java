@@ -1,11 +1,20 @@
 package controller.beans;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.faces.FacesException;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.imageio.stream.FileImageOutputStream;
+
+import org.primefaces.event.CaptureEvent;
 
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class FirmarEpad   {
 
 	 
@@ -28,7 +37,7 @@ public class FirmarEpad   {
 		return ImageContentBase64;
 	}
 
-
+	
 
 	public void setImageContentBase64(String imageContentBase64) {
 		ImageContentBase64 = imageContentBase64;

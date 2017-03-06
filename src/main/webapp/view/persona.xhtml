@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>CEA-WEB</title>
+</h:head>
+<h:body>
+
+	<h:form id="frmPersona">
+		<p:growl id="grMensaje" showDetail="true" life="3000" sticky="true"></p:growl>
+
+		<p:panel id="pnPersona" header="REGISTRO DE PERSONAS">
+			<p:panelGrid columns="6">
+			
+			<p:outputLabel value="Tipo Documento:" for="slTipoDocumento"></p:outputLabel>
+			<p:selectOneMenu id="slTipoDocumento" value="" required="true" requiredMessage="Tipo Documento Obligatorio">
+			<f:selectItem itemLabel="-- Seleccione uno --" noSelectionOption="true" />
+			<f:selectItem itemLabel="Cédula" itemValue="cc" />
+			<f:selectItem itemLabel="Tarjeta de Identidad" itemValue="ti" />
+			<f:selectItem itemLabel="Pasaporte" itemValue="pp" />
+			<f:selectItem itemLabel="Cédula extranjería" itemValue="ce" />
+			<f:selectItem itemLabel="Cédula akjdshfshd" itemValue="ce" />
+			</p:selectOneMenu>
+			
+			<p:outputLabel value="Documento:" for="txtDocumento"></p:outputLabel>
+			<p:inputText id="txtDocumento" value="" required="true" requiredMessage="Documento Obligatorio"></p:inputText>
+			
+			
+			<p:outputLabel for="txtFechaNacimiento" value="Fecha Nacimiento:" />
+            <p:calendar  id="txtFechaNacimiento"  showOn="button" required="true" readonlyInput="true" locale="es" navigator="true" pattern="yyyy/MM/dd"  requiredMessage="Fecha Nacimiento Obligatoria" />  		
+			
+			
+			<p:outputLabel value="Nombres:" for="txtNombre"></p:outputLabel>
+			<p:inputText id="txtNombre" value="" required="true" requiredMessage="Nombre Obligatorio"></p:inputText>
+			
+			<p:outputLabel value="Apellidos:" for="txtApellido"></p:outputLabel>
+			<p:inputText id="txtApellido" value="" required="true" requiredMessage="Apellido Obligatorio"></p:inputText>
+			
+			</p:panelGrid>
+			<p:commandButton id="txtGuardar" update="grMensaje"></p:commandButton>
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+</html>

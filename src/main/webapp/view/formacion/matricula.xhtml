@@ -12,7 +12,8 @@
 <h:body>
 
 	<h:form id="frm">
-		<p:panel id="pnFirma">
+		
+		
 			<p:panelGrid columns="2" emptyMessage="Tabla vacia">
 				<p:outputLabel value="Firma"></p:outputLabel>
 
@@ -25,16 +26,15 @@
 					actionListener="#{firmarEpad.mostrarFirma()}">
 
 				</p:commandButton>
-				<p:outputLabel id="txtFirma" value="#{firmarEpad.imageContentBase64}" ></p:outputLabel>
+				<p:inputText style="display:none;" value="#{firmarEpad.imageContentBase64}"></p:inputText>
+				
+				<p:graphicImage ></p:graphicImage>
 			</p:panelGrid>
-
-
-
-		</p:panel>
-
-
-
+			
 	</h:form>
+	
+
+  
 	<script type="text/javascript">
 	var imgWidth = 300;
 	var imgHeight= 150;
@@ -72,7 +72,8 @@
 	{
         var obj = JSON.parse(JSON.stringify(objResponse));
 	    var ctx = document.getElementById('giFirma');
-	    var ctx1 = document.getElementById('frm:txtFirma');
+	   // var ctx1 = document.getElementById('frm:gifirma1');
+	    var ctx2 = document.getElementById('frm:j_idt12');
 
 			if (obj.errorMsg != null &amp;&amp; obj.errorMsg!="" &amp;&amp; obj.errorMsg!="undefined")
 			{
@@ -89,8 +90,10 @@
 						
 					}
 					img.src = "data:image/png;base64," + obj.imageData; // me trae la data de la imagen String base64
-					ctx1.innerHTML= img.src; //actualizo el contenido que deseo enviar
+					
 					ctx.src=img.src; // le da valor a la imagen 
+					ctx2.value=img.src;
+					
 			
                 }
             }
