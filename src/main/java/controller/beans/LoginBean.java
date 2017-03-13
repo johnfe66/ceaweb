@@ -1,5 +1,7 @@
 package controller.beans;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -8,37 +10,51 @@ import javax.faces.event.ActionEvent;
 
 import org.primefaces.context.RequestContext;
 
+import controller.dao.IUsuarioDAO;
+import controller.impl.UsuarioDAOImpl;
+
 @ManagedBean
 @RequestScoped
-public class Login {
+public class LoginBean {
 	
 	private String clave;
 	private String usuario;
 
-	public Login() {
+	public LoginBean() {
 		//TODO
 	}
 	
 	 public void login(ActionEvent event) {
+		 
+		    IUsuarioDAO dao= new UsuarioDAOImpl();
+		    
+		    
+		    List<Object> listaDatosLogin;
+		    
+		    boolean logueo=false;
+		    
+		    
 	        RequestContext context = RequestContext.getCurrentInstance();
 		    
 	        FacesMessage mensaje = null;
-	        boolean logueo = false;
+	        
+	        listaDatosLogin=dao.login(this.usuario, this.clave);
 	         
 	        String pagina=null;
 	        
-			if(usuario != null && usuario.equals("admin") && clave != null && clave.equals("admin")) {
-	        	logueo = true;
-	            mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", usuario);
+			if(listaDatosLogin!=null) {
+				logueo=true;
+	            mensaje = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", listaDatosLogin.get(1).toString());
 	            pagina="/CEAWEB/view/formacion/matricula.xhtml";
 	            
 	        } else {
-	        	logueo = false;
-	            mensaje = new FacesMessage(FacesMessage.SEVERITY_WARN, "Error login", "Credenciales Invalidas");
+	        	logueo=false;
+	            mensaje = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error login", "Credenciales Invalidas");
 	            pagina="/CEAWEB/view/login.xhtml";
 	        }
 	         
-	        FacesContext.getCurrentInstance().addMessage(null, mensaje);
+	        FacesContext.getCurrentInstance().addMessage("hola", mensaje);
+	        
 	        context.addCallbackParam("logueo", logueo);
 	        context.addCallbackParam("pagina", pagina);
 	    } 
